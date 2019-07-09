@@ -1,9 +1,54 @@
 package ro.jademy.carrental;
 
-public class Salesman {
+import java.util.Objects;
 
-    // Q: how can we avoid duplicate code in the salesman and the customer classes?
+public class Salesman extends Person {
 
-    public String firstName;
-    public String lastName;
+    private String username;
+    private String password;
+
+    public Salesman(String firstName, String lastName, String username, String password) {
+        super(firstName, lastName);
+        this.username = username;
+        this.password = password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Salesman salesman = (Salesman) o;
+        return username.equals(salesman.username) &&
+                password.equals(salesman.password);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), username, password);
+    }
+
+    @Override
+    public String toString() {
+        return "Salesman{" +
+                "username=" + username +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }
